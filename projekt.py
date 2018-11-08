@@ -28,6 +28,6 @@ kaivita.place(x=400, y=125)
 sulge = Button(text="sulge", command = exit)
 sulge.place(x=400, y=150)
 
-profiil = Combobox(text='profiil1',)
+profiil = Combobox(text='profiil1',values=('uks', 'kaks'))
 profiil.place(x=10, y=10)
 window.mainloop()

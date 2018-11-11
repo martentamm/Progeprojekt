@@ -1,9 +1,11 @@
-import webbrowser
+import webbrowser 
 from tkinter.ttk import *
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+import tkinter
 
+global window
 window = Tk()
 window.title("Profile maker")
 window.geometry('400x200')
@@ -13,8 +15,8 @@ window.iconbitmap('ikoon.ico')
 #Failis leheküljed.txt esimesel positsioonil on profiili nimi ja teine kuni lõpmatus positsioonil
 # erinevad leheküljed
 
+#Funktsioon runni() võtab failist leheküljed.txt vastavalt valitud profiilile ja pärast lehekülgede avamist programm sulgub
 
-#Funktsioon runni() võtab failist leheküljed.txt ja pärast lehekülgede avamist programm sulgub
 def runni():
     i = 1
     with open('leheküljed.txt') as f:
@@ -27,7 +29,7 @@ def runni():
 
 #Funktsioon quit() vastab nupule "Sulge"
 def quit():
-	window.destroy()
+    window.destroy()
 
 #Funktsioon uus_profiil() loob
 ##def uus_profiil():

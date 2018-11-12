@@ -25,11 +25,9 @@ def runni():
 					i += 1
 	window.destroy()
 
-
 # Funktsioon quit() vastab nupule "Sulge"
 def quit():
-	window.destroy()
-
+	exit()
 
 # Funktsioon uus_profiil() loob
 ##def uus_profiil():
@@ -44,26 +42,20 @@ def profiililist():
 	return profiilid
 
 
-def vali():
-	return profiil.get()
-
-
 kaivita = Button(text="käivita", command=runni)
-kaivita.place(x=300, y=80)
+kaivita.place(x=300, y=110)
+kaivita.config(width=8)
 
 sulge = Button(text="sulge", command=quit)
 sulge.place(x=300, y=140)
+sulge.config(width=8)
 
 profiil = Combobox(window, values=(profiililist()))
 profiil.current(0)
 profiil.place(x=10, y=40)
 
-# selle nupuga saan  kasutaja poolt valitud tegevuse
-value = Button(text="Vali", command=vali)
-value.place(x=10, y=70)
-
-##loo_uus = Button(text="Loo uus profiil", command = uus_profiil())
-##loo_uus.place(x=300, y=110)
+# loo_uus = Button(text="Loo uus profiil", command = uus_profiil())
+# loo_uus.place(x=300, y=110)
 
 pealkiri = Label(window, text="Vali profiil:")
 pealkiri.place(x=10, y=10)

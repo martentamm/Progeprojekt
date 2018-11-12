@@ -22,8 +22,6 @@ def runni():
 def quit():
 	window.destroy()
 
-
-
 def uus_profiil():
 	pass
 

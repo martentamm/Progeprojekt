@@ -1,5 +1,5 @@
 Sotsiaalmeedia,https://www.instagram.com/,https://www.facebook.com/,https://mail.google.com/
-Meelelahutus,https://www.youtube.com/,https://www.netflix.com/,https://www.iomovies.to/,https://www.spotify.com/ee/
+Meelelahutus,https://www.youtube.com/,https://www.netflix.com/,https://www.iomovies.to/,https://open.spotify.com/browse/featured
 Kool,https://www.is.ut.ee/pls/ois/tere.tulemast,https://graphbook.cs.ut.ee,https://moodle.ut.ee,https://www.wikipedia.org/,https://github.com/
 Uudised,https://www.postimees.ee
 Muu,https://www.google.ee/,https://ihouse.ee/,http://www.kriisis.ee

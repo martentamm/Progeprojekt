@@ -9,29 +9,23 @@ window.title("Profile maker")
 window.geometry('400x200')
 window.iconbitmap('ikoon.ico')
 
-
-# Failis leheküljed.txt esimesel positsioonil on profiili nimi ja teine kuni lõpmatus positsioonil
-# erinevad leheküljed
-
-
-# Funktsioon runni() võtab failist leheküljed.txt ja pärast lehekülgede avamist programm sulgub
 def runni():
 	i = 1
 	with open('leheküljed.txt') as f:
 		for rida in f:
-			if rida.split(",")[0] == vali():
+			if rida.split(",")[0] == profiil.get():
 				while i < len(rida.split(",")):
 					webbrowser.open_new_tab(rida.split(",")[i])
 					i += 1
 	window.destroy()
 
-# Funktsioon quit() vastab nupule "Sulge"
 def quit():
-	exit()
+	window.destroy()
 
-# Funktsioon uus_profiil() loob
-##def uus_profiil():
 
+
+def uus_profiil():
+	pass
 
 def profiililist():
 	profiilid = []
@@ -41,23 +35,21 @@ def profiililist():
 			profiilid.append(tegevus[0].strip())
 	return profiilid
 
+pealkiri = Label(window, text="Vali profiil:")
+pealkiri.place(x=10, y=10)
 
 kaivita = Button(text="käivita", command=runni)
-kaivita.place(x=300, y=110)
-kaivita.config(width=8)
+kaivita.place(x=300, y=80)
 
 sulge = Button(text="sulge", command=quit)
 sulge.place(x=300, y=140)
-sulge.config(width=8)
 
 profiil = Combobox(window, values=(profiililist()))
 profiil.current(0)
 profiil.place(x=10, y=40)
 
-# loo_uus = Button(text="Loo uus profiil", command = uus_profiil())
-# loo_uus.place(x=300, y=110)
+##loo_uus = Button(text="Loo uus profiil", command = uus_profiil())
+##loo_uus.place(x=300, y=110)
 
-pealkiri = Label(window, text="Vali profiil:")
-pealkiri.place(x=10, y=10)
 
 window.mainloop()

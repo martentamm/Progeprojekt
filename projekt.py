@@ -58,10 +58,6 @@ profiil = Combobox(window, values=(profiililist()))
 profiil.current(0)
 profiil.place(x=10, y=40)
 
-# selle nupuga saan  kasutaja poolt valitud tegevuse
-value = Button(text="Vali", command=vali)
-value.place(x=10, y=70)
-
 ##loo_uus = Button(text="Loo uus profiil", command = uus_profiil())
 ##loo_uus.place(x=300, y=110)
 

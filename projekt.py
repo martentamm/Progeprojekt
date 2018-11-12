@@ -12,16 +12,23 @@ window.iconbitmap('ikoon.ico')
 #Failis leheküljed.txt esimesel positsioonil on profiili nimi ja teine kuni lõpmatus positsioonil
 # erinevad leheküljed
 #
-#
-
 #Funktsioon runni() võtab failist leheküljed.txt ja pärast lehekülgede avamist programm sulgub
-def runni(profiil):
-	print()
+def runni(event):
+	global profiil
+	valitud_profiil = profiil.get()
 	with open('leheküljed.txt') as f:
-		for lehekulg in f:
-			lehekulg = lehekulg.split(',')
-			if lehekulg[0] == profiil:
-				webbrowser.open_new_tab(lehekulg[1])
+		for rida in f:
+			rida = rida.split('||')
+			profiilinimi = rida[0]
+			leheküljed = rida[1]
+			if profiilinimi == valitud_profiil:
+				valitud_lehed = []
+				leheküljed = leheküljed.split(',')
+				print(leheküljed)
+				for i in leheküljed:
+
+				webbrowser.open(leheküljed)
+				break
 	window.destroy()
 
 #Funktsioon uus_profiil() loob
@@ -32,7 +39,7 @@ def profiililist():
 	profiilid = []
 	with open('leheküljed.txt') as f:
 		for profiil in f:
-			profiil = profiil.split(',')
+			profiil = profiil.split('||')
 			profiilid.append(profiil[0])
 	return profiilid
 
@@ -50,9 +57,8 @@ pealkiri = Label(text = "Vali profiil:")
 pealkiri.place(x=10, y=10)
 
 profiil = Combobox(textvariable = nimi, values=profiililist())
-
 profiil.bind("<<ComboboxSelected>>",runni)
-profiil.current(0)
+# profiil.current(0)
 profiil.place(x=10, y=40)
 
 

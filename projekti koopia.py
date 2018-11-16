@@ -10,26 +10,58 @@ window.title("Profile maker")
 window.geometry('450x200')
 window.iconbitmap('ikoon.ico')
 
-#Failis leheküljed.txt esimesel positsioonil on profiili nimi ja teine kuni lõpmatus positsioonil
-# erinevad leheküljed
-#
-#Funktsioon runni() võtab failist leheküljed.txt ja pärast lehekülgede avamist programm sulgub
-##def runni(event):
-##	global profiil
-##	valitud_profiil = profiil.get()
-##	with open('leheküljed.txt') as f:
-##		for rida in f:
-##			#rida = rida.split(',')
-##			profiilinimi = rida.split(",")[0]
-##			leheküljed = rida[1]
-##			if profiilinimi == valitud_profiil:
-##				valitud_lehed = []
-##				leheküljed = leheküljed.split(',')
-##				print(leheküljed)
-##				for i in leheküljed:
-##                                    webbrowser.open(leheküljed)
-##				break
-##	window.destroy()
+def lisa_uus():
+	uus_profiil = []
+	a = []
+
+	def lisa():
+		a.append(lehekülje_kast.get())
+		print(a)
+		return a
+
+
+	def lõpeta():
+		f = open('leheküljed.txt')
+		f.write(uus_profiil)
+		f.close()
+		uus_aken.destroy()
+		pass
+
+	def kustuta():
+		pass
+
+	uus_aken = Tk()
+	uus_aken.title('Loo uus profiil')
+	uus_aken.iconbitmap('ikoon.ico')
+	uus_aken.geometry('400x400')
+	profiili_nimi_label = Label(uus_aken, text="Uue profiili nimi:")
+	profiili_nimi_label.place(x=10, y=20)
+	profiili_nime_kast = Entry(uus_aken)
+	profiili_nime_kast.place(x=110, y=20)
+	lehekülje_label = Label(uus_aken, text="Lehekülje aadress:")
+	lehekülje_label.place(x=10, y=40)
+	lehekülje_kast = Entry(uus_aken)
+	lehekülje_kast.place(x=110, y= 40)
+	lisatud_leheküljed = lehekülje_kast.get()
+	box = Listbox(uus_aken)
+
+	for i in lisa():
+		box.insert(END, i)
+
+	box.config(relief=SUNKEN, border=2)
+	box.place(x=200, y=200)
+	lisa = Button(uus_aken, text="Lisa", command=lisa)
+	lisa.place(x=300, y=10)
+	lisa.config(width = 10)
+	kustuta = Button(uus_aken, text="kustuta", command=kustuta)
+	kustuta.place(x=300, y=40)
+	kustuta.config(width=10)
+	lõpeta = Button(uus_aken, text="Lõpeta", command=lõpeta)
+	lõpeta.place(x=300, y=70)
+	lõpeta.config(width=10)
+	uus_aken.mainloop()
+
+
 def runni():
     i = 1
     with open('leheküljed.txt') as f:
@@ -65,7 +97,7 @@ kaivita.place(x=300, y=80)
 sulge = Button(text="sulge", command = exit)
 sulge.place(x=300, y=140)
 
-loo_uus = Button(text="Loo uus profiil", command = uus_profiil())
+loo_uus = Button(text="Loo uus profiil", command =lisa_uus())
 loo_uus.place(x=300, y=110)
 
 pealkiri = Label(text = "Vali profiil:")

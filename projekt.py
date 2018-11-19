@@ -1,13 +1,76 @@
 import webbrowser
-from tkinter.ttk import *
 from tkinter import *
-from tkinter import ttk
-from tkinter import messagebox
+from tkinter.ttk import *
 
+global window
 window = Tk()
 window.title("Profile maker")
-window.geometry('400x200')
+window.geometry('450x200')
 window.iconbitmap('ikoon.ico')
+
+def lisa_uus():
+
+	uus_aken = Tk()
+	uus_aken.title('Loo uus profiil')
+	uus_aken.iconbitmap('ikoon.ico')
+	uus_aken.geometry('400x400')
+
+	def lisa():
+		lehekulg = lehekülje_kast.get()
+		box.insert(END, lehekulg)
+
+	def lõpeta():
+		lehekuljed = []
+		profiilinimi = profiili_nime_kast.get()
+		with open('leheküljed.txt', 'a') as lehekuljedtxt:
+			# lehekuljedtxt.write(profiilinimi)
+			start = box.curselection()
+			end = box.curselection()
+
+			# for rida in data:
+			# 	lehekuljedtxt.write(rida + ',')
+			# lehekuljedtxt.write('\n')
+			print(start)
+			uus_aken.destroy()
+
+
+	def kustuta():
+		lehekulg = lehekülje_kast.get()
+		box.delete(END, " ")
+
+	profiili_nimi_label = Label(uus_aken, text="Uue profiili nimi:")
+	profiili_nimi_label.place(x=10, y=20)
+	profiili_nime_kast = Entry(uus_aken)
+	profiili_nime_kast.place(x=110, y=20)
+
+	lehekülje_label = Label(uus_aken, text="Lehekülje aadress:")
+	lehekülje_label.place(x=10, y=40)
+
+	lehekülje_kast = Entry(uus_aken)
+	lehekülje_kast.place(x=110, y= 40)
+
+	box = Listbox(uus_aken)
+
+	box.config(relief=SUNKEN, border=2)
+	box.place(x=200, y=200)
+
+	lisa = Button(uus_aken, text="Lisa", command= lisa)
+	lisa.place(x=300, y=10)
+	lisa.config(width = 10)
+
+	kustuta = Button(uus_aken, text="Kustuta", command= kustuta)
+	kustuta.place(x=300, y=40)
+	kustuta.config(width=10)
+
+	lõpeta = Button(uus_aken, text="Lõpeta", command= lõpeta)
+	lõpeta.place(x=300, y=70)
+	lõpeta.config(width=10)
+
+	for rida in uus_profiil:
+		box.insert(rida)
+
+	uus_aken.mainloop()
+
 
 def runni():
 	i = 1
@@ -17,37 +80,34 @@ def runni():
 				while i < len(rida.split(",")):
 					webbrowser.open_new_tab(rida.split(",")[i])
 					i += 1
-	window.destroy()
-
-def quit():
-	window.destroy()
-
-def uus_profiil():
-	pass
+				if i == len(rida.split(",")):
+					window.close()
 
 def profiililist():
 	profiilid = []
 	with open('leheküljed.txt', encoding='UTF-8') as f:
-		for tegevus in f:
-			tegevus = tegevus.split(',')
-			profiilid.append(tegevus[0].strip())
+		for rida in f:
+			rida = rida.split(',')
+			profiilid.append(rida[0].strip())
 	return profiilid
 
-pealkiri = Label(window, text="Vali profiil:")
-pealkiri.place(x=10, y=10)
 
-kaivita = Button(text="käivita", command=runni)
+nimi = StringVar()
+kaivita = Button(text="käivita", command = runni)
 kaivita.place(x=300, y=80)
 
-sulge = Button(text="sulge", command=quit)
+sulge = Button(text="sulge", command = exit)
 sulge.place(x=300, y=140)
 
-profiil = Combobox(window, values=(profiililist()))
-profiil.current(0)
-profiil.place(x=10, y=40)
+loo_uus = Button(text="Loo uus profiil", command =lisa_uus)
+loo_uus.place(x=300, y=110)
 
-##loo_uus = Button(text="Loo uus profiil", command = uus_profiil())
-##loo_uus.place(x=300, y=110)
+pealkiri = Label(text = "Vali profiil:")
+pealkiri.place(x=10, y=10)
+
+profiil = Combobox(textvariable = nimi, values=profiililist())
+profiil.SelectedIndex = -1
+profiil.place(x=10, y=40)
 
 
 window.mainloop()

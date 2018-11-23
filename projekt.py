@@ -15,28 +15,26 @@ def lisa_uus():
 	uus_aken.iconbitmap('ikoon.ico')
 	uus_aken.geometry('400x400')
 
+	tuhi = []
 	def lisa():
 		lehekulg = lehekülje_kast.get()
+
 		box.insert(END, lehekulg)
+		first = 0
+		tuhi.append(box.get(first,END))
+		print(tuhi)
 
 	def lõpeta():
 		lehekuljed = []
 		profiilinimi = profiili_nime_kast.get()
 		with open('leheküljed.txt', 'a') as lehekuljedtxt:
-			# lehekuljedtxt.write(profiilinimi)
-			start = box.curselection()
-			end = box.curselection()
-
-			# for rida in data:
-			# 	lehekuljedtxt.write(rida + ',')
-			# lehekuljedtxt.write('\n')
-			print(start)
+			box.get(first,last=None)
+			print(box.get(first,last=None))
 			uus_aken.destroy()
 
 
 	def kustuta():
-		lehekulg = lehekülje_kast.get()
-		box.delete(END, " ")
+		box.delete(box.curselection(), box.curselection())
 
 	profiili_nimi_label = Label(uus_aken, text="Uue profiili nimi:")
 	profiili_nimi_label.place(x=10, y=20)
@@ -45,14 +43,12 @@ def lisa_uus():
 
 	lehekülje_label = Label(uus_aken, text="Lehekülje aadress:")
 	lehekülje_label.place(x=10, y=40)
-
 	lehekülje_kast = Entry(uus_aken)
 	lehekülje_kast.place(x=110, y= 40)
 
 	box = Listbox(uus_aken)
-
-	box.config(relief=SUNKEN, border=2)
-	box.place(x=200, y=200)
+	box.config(relief=SUNKEN, border=2, width= 63)
+	box.place(x=10, y=200)
 
 	lisa = Button(uus_aken, text="Lisa", command= lisa)
 	lisa.place(x=300, y=10)
